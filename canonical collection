@@ -1,0 +1,18 @@
+<!-- Include custom canonical for specific product page types from a collection page -->
+
+<!-- Original -->
+  <!-- collections.liquid -->
+  {% for product in collection.products %}{% capture productCode %}{% include 'product', product: product %}{% endcapture %}{{ productCode | strip }}{% endfor %}
+  
+  <!-- Product Snippet -->
+  <a href="{{ product.url | within: collection }}" class="js-scroll js-scroll--slide">
+  
+  
+<!-- Custom -->
+  <!-- Product Snippet -->
+  {% if collection.url contains '/everything' %}
+  {% assign collectionURL = product.url %}
+  {% else %}
+  {% assign collectionURL = product.url | within: collection %}
+  {% endif %}
+  <a href="{{ product.url | within: collection }}" class="js-scroll js-scroll--slide">

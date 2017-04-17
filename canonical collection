@@ -5,7 +5,7 @@
   {% for product in collection.products %}{% capture productCode %}{% include 'product', product: product %}{% endcapture %}{{ productCode | strip }}{% endfor %}
   
   <!-- product.liquid Snippet -->
-  <a href="{{ product.url | within: collection }}" class="js-scroll js-scroll--slide">
+  <a href="{{ product.url | within: collection }}">
   
   
 <!-- Custom -->
@@ -15,4 +15,4 @@
   {% else %}
   {% assign collectionURL = product.url | within: collection %}
   {% endif %}
-  <a href="{{ product.url | within: collection }}" class="js-scroll js-scroll--slide">
+  <a href="{{ product.url | within: collection }}">

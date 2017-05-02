@@ -1,0 +1,14 @@
+#Blog Links CSS 
+<style>.article-content a{
+	text-decoration: line-through;
+}
+.article-content a:hover{
+	color: #F0C21A;
+	text-decoration: none;
+}</style>
+
+#Page Title Doesn't have "Rudy's"
+<title>
+    {{ page_title }}{% if current_tags %}{% assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags }}{% endif %}{% if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif %}{% unless page_title contains shop.name or "Rudy's" %} &ndash; {{ shop.name }}{% endunless %}
+    </title>
+

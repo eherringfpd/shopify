@@ -12,3 +12,27 @@
     {{ page_title }}{% if current_tags %}{% assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags }}{% endif %}{% if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif %}{% unless page_title contains shop.name or "Rudy's" %} &ndash; {{ shop.name }}{% endunless %}
     </title>
 
+Added On Page Events
+
+-- theme.liquid
+<a href="#" class="js-book-now__trigger header__nav__secondary__book BookNow book-now-header" id="BookNow" onclick="ga('send', 'event', 'Book Now', 'Button Click', 'Book Now Header');">
+
+--article.liquid
+{% if article.metafields.c_f['store-book-link'] != "" %}<a href="{{ article.metafields.c_f['store-book-link'] }}" class="button button--cta book-now-locations" onclick="ga('send', 'event', 'Book Now', 'Button Click', 'Book Now Locations');">Book now</a>{% endif %}
+
+--page.location.liquid
+<a href="#" class="button button--cta" onclick="ga('send', 'event', 'Book Now', 'Button Click', 'Book Now Header');">Book now</a>
+
+--page.careers.liquid
+{% if job.metafields.c_f['jobs-apply-now-url'] %}<em><a target="_blank" href="{{ job.metafields.c_f['jobs-apply-now-url'] }}" class="apply-now" onclick="ga('send', 'event', 'Apply Now', 'Button Click', 'Careers');">Apply now</a></em>{% endif %}
+
+--assets site.js
+<a href="#" name="find-me" class="book-now__find-me js-book-now__find-me book-now-zip" onclick="bookNowZip();">\n
+
+<a target="_blank" href="'+t.bookLink+'" class="button button--cta book-now-search" onclick="bookNowSearchMultiple();">Book Now</a>
+
+
+--article.locations.liquid
+<a href="{{ article.metafields.c_f['store-book-link'] }}" target="_blank" class="is-active book-now-locations" onclick="bookNowMultiple();">
+
+{% unless article.metafields.c_f['store-book-link'] == blank %}<a href="{{ article.metafields.c_f['store-book-link'] }}" class="button button--cta book-now-locations" onclick="bookNowMultiple();" target="_blank">Book now</a>{% endunless %}
